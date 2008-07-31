@@ -1,0 +1,53 @@
+<h1>New</h1>
+
+<script type='text/javascript'>
+  var swfu;
+
+  window.onload = function () {
+    swfu = new SWFUpload({
+      upload_url : '<%= assets_path -%>?_swfupload_demo_session=<%= u session.session_id %>',
+      flash_url : '/flash/swfupload_f9.swf',
+
+      file_size_limit : '10000',
+      file_types : '*.jpg',
+      file_types_description : 'JPG Images',
+      file_upload_limit : '0',
+
+      file_queue_error_handler : fileQueueError,
+      file_dialog_complete_handler : fileDialogComplete,
+      upload_progress_handler : uploadProgress,
+      upload_error_handler : uploadError,
+      upload_success_handler : uploadSuccess,
+      upload_complete_handler : uploadComplete,
+
+			post_params : {
+				authenticity_token : '<%= u form_authenticity_token -%>',
+			},
+
+      custom_settings : { 
+        upload_target : 'divFileProgressContainer',
+      },
+
+      debug: false
+
+    });
+  };
+</script>
+
+<div style="margin: 0px 10px;">
+	<div>
+
+		<% form_for(@asset) do |f| %>
+			<fieldset>
+				<button id="btnBrowse" type="button" style="padding: 5px;" onclick="swfu.selectFiles(); this.blur();">
+				  Select Files <span style="font-size: 7pt;">(5 MB Max)</span>
+			  </button>
+			</fieldset>
+		<% end %>
+
+	</div>
+	<div id="divFileProgressContainer" style="height: 75px;"></div>
+	<div id="thumbnails"></div>
+	
+	<p><%= link_to 'back', assets_path %></p>
+</div>

@@ -1,0 +1,30 @@
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>File size</th>
+			<th>File Type</th>
+			<th>Author</th>
+			<th>Updated</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% unless @assets.blank? %>
+			<% @assets.each do |asset| -%>
+				<tr>
+					<td><%= link_to image_tag(asset.public_filename(:thumb)), asset %></td>
+					<td><%= number_to_human_size(asset.size) %></td>
+					<td><%= h asset.content_type %></td>
+					<td><%= h asset.user.login %></td>
+					<td><%= asset.updated_at.to_s(:full) %></td>
+				</tr>
+			<% end -%>
+		<% else -%>
+			<tr>
+				<td colspan="5">No assets found.</td>
+			</tr>
+		<% end -%>
+	</tbody>
+</table>
+
+<p><%= link_to "new asset", new_asset_path %></p>
