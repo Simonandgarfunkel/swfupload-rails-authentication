@@ -28,3 +28,11 @@ The restful authentication test user;
 
 username: quentin
 password: monkey
+
+
+References
+==========
+
+http://seventytwo.co.uk/posts/making-swfupload-and-rails-work-together
+http://blog.airbladesoftware.com/2007/8/8/uploading-files-with-swfupload
+http://blog.inquirylabs.com/2006/12/09/getting-the-_session_id-from-swfupload/
