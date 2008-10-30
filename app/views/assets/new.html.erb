@@ -6,12 +6,25 @@
   window.onload = function () {
     swfu = new SWFUpload({
       upload_url : '<%= assets_path -%>?_swfupload_demo_session=<%= u session.session_id %>',
-      flash_url : '/flash/swfupload_f9.swf',
+      flash_url : '/flash/swfupload.swf',
+
+			// Button settings
+			button_image_url: "/images/TestImageNoText_65x29.png",	// Relative to the Flash file
+			button_width: "65",
+			button_height: "29",
+			button_placeholder_id: "spanButtonPlaceHolder",
+			button_text: '<span class="theFont">Hello</span>',
+			button_text_style: ".theFont { font-size: 16; }",
+			button_text_left_padding: 12,
+			button_text_top_padding: 3,
 
       file_size_limit : '10000',
       file_types : '*.jpg',
       file_types_description : 'JPG Images',
       file_upload_limit : '0',
+			custom_settings : {
+				progressTarget : "fsUploadProgress"
+			},
 
       file_queue_error_handler : fileQueueError,
       file_dialog_complete_handler : fileDialogComplete,
@@ -39,9 +52,10 @@
 
 		<% form_for(@asset) do |f| %>
 			<fieldset>
-				<button id="btnBrowse" type="button" style="padding: 5px;" onclick="swfu.selectFiles(); this.blur();">
-				  Select Files <span style="font-size: 7pt;">(5 MB Max)</span>
-			  </button>
+				<div id="divStatus">0 Files Uploaded</div>
+					<div>
+						<span id="spanButtonPlaceHolder"></span>
+					</div>
 			</fieldset>
 		<% end %>
 
