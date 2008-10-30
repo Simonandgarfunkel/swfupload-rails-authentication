@@ -3,6 +3,7 @@ swfupload-rails-authentication
 
 Demo Rails 2.1.2 app showing SWFUpload working in tandem with restful-authentication, CSRF protection and attachment_fu.
 
+The demo has been updated to use SWFUpload v2.2.0 Beta 2, which supports Flash Player 10.
 
 Requirements
 ============
